@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}blog{% endblock title %}
+{% block activeblog %}active{% endblock activeblog %}
+{% block css %}
+ <style>
+  container{min-height:110vh;
+  }
+ </style>
+{% endblock css %}
+
+{% block body %}
+<div class="mb-5">
+<h1 class="text-center my-3 text-white bg-dark mt-0 pb-5">Welcome to Mountain Coder</h1>
+</div>
+{% for blg in blogs %}
+ <div class="container" my-3>
+  
+ 
+  <div class="media-body">
+    <h3 class="mt-3 text-dark"><a href="/blogpost/{{blg.slug}}" class="text-dark">{{blg.title}}</a></h3>
+    <div class="my-2">
+    {{blg.short_desc|slice:300}}...
+    </div>
+    <a href="/blogpost/{{blg.slug}}" class="text-dark"><button type="button" class="btn btn-outline-primary">Read More...</button></a>
+  </div> 
+ </div>
+
+{% endfor %}
+   <div class="container my-3">
+   {% if prev %}
+     <button type="button" class="btn btn-primary text-light"><a class="text-light" href="/blog?page={{prev}}">&laquo Previous</a></button>
+   {% else %}
+     <button type="button" class="btn btn-primary "><a href="#" class="text-light">&laquo Previous</a></button>
+   {% endif %}
+   {% if nxt %}
+     <button type="button" class="btn btn-primary text-light"><a class="text-light" href="/blog?page={{nxt}}">Next &raquo</a></button>
+   {% else %}
+     <button type="button" class="btn btn-primary text-light"><a class="text-light" href="#">Next &raquo</a></button>
+   {% endif %}
+ 
+   </div>
+   <div class="mb-5"></div>
+
+
+{% endblock body %}
