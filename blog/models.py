@@ -35,5 +35,9 @@ class Signup(models.Model):
     def __str__(self):
         return self.name
 
+class Photo(models.Model):
+
+    Pic=models.ImageField(upload_to="imagefolder")      
+
 
 

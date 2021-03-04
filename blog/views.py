@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponseRedirect, HttpResponse
 from blog import models
-from blog.models import Blog,Contact,Signup
+from blog.models import Blog,Contact,Signup,Photo
 from django.db.models import Q
 
 
@@ -50,7 +50,11 @@ def contact(request):
         instance=Contact(name=name,email=email,phone=phone,desc=desc)
         instance.save()
     
-    return render(request,"contact.html")           
+    return render(request,"contact.html")
+def gallery(request):
+    ph=Photo.objects.all()
+    
+    return render(request,"gallery.html",{"ph":ph})               
 def search(request):
     return render(request,"search.html") 
 def signup(request):
@@ -80,4 +84,4 @@ def login(request):
        return HttpResponseRedirect("http://127.0.0.1:8000/signup/")
                
 
-   return render(request,"login.html")    
+   return render(request,"login.html")   

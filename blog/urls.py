@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from blog import views
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
  
@@ -25,5 +28,6 @@ urlpatterns = [
     path('blogpost/<str:slug>', views.blogpost, name='blogpost'),
     path('contact/', views.contact, name='contact'),
     path('signup/', views.signup, name='signup'),
-    path('login/', views.login, name='login')
-]
+    path('login/', views.login, name='login'),
+    path('gallery/', views.gallery, name='gallery')
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
